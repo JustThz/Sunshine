@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,8 +80,11 @@ public class MainActivity extends ActionBarActivity {
                             R.id.list_item_forecast_textview, // The ID of the textview to populate.
                             weekForecast);
 
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);     //Infla fragment_main
+            //Se obtiene la listview de rootView osea de fragment_main
+            ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
+            listView.setAdapter(mForecastAdapter);                                          //Se especifica la listview donde se
+            return rootView;                                                                //entregara la información del adaptador
         }
     }
 }

@@ -4,6 +4,7 @@ package com.example.android.sunshine;
  * Created by JuanCarlos on 10/03/2016.
  */
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -107,6 +108,13 @@ public class ForecastFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String forecast = mForecastAdapter.getItem(position);
                 Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();         //Toast que muestra
+                // Con el Intent se ejecuta DetailActivity
+                Intent intent = new Intent(getActivity(),DetailActivity.class);
+                //con el metodo putExtra se agrega la información que se quiere enviar a DetailActivity
+                //Esta información se envia con la etiqueta "SendForecast" y envia la información contenida en forecast
+                intent.putExtra("SendForecast",forecast);
+                //Inicia la actividad
+                startActivity(intent);
             }
         });
 

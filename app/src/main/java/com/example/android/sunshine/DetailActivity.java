@@ -1,13 +1,16 @@
 package com.example.android.sunshine;
 
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v7.app.ActionBarActivity;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class DetailActivity extends ActionBarActivity {
 
@@ -57,7 +60,17 @@ public class DetailActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
+            Intent intent = getActivity().getIntent();
+            if (intent == null){
+                Log.d("Tag", "La actividad no se ha llamado mediante un intent.");
+            }
+            Log.d("Tag", "intent activado.");
+            String message = intent.getStringExtra("SendForecast");
+            Log.v("Mensaje: ", message);
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+            TextView textView = (TextView)rootView.findViewById(R.id.textView_fragmentDetail);
+            textView.setText(message);
+
             return rootView;
         }
     }
